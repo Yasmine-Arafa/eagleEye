@@ -29,10 +29,9 @@ class eventController extends Controller
 
         $event = new Event;
 
-         // Handle event frames collection Upload
+         // Handle event video Upload
         if($request->hasFile('video'))
         {
-            //dd($request->file('frames'));
 
             $video = $request->file('video');
 
@@ -87,9 +86,7 @@ class eventController extends Controller
         // $event->frames = implode("|", $frames);
         // }
 
-        $event->frames = $video_name;
-
-        $event->frames_no = 1;
+        $event->videos = $video_name;
 
         $event->save();
 
@@ -169,9 +166,7 @@ class eventController extends Controller
         // $event->frames = implode("|", $frames);
         // }
 
-        $event->frames = $video_name;
-
-        $event->frames_no = 1;
+        $event->videos = $video_name;
 
         $event->save();
         return new EventResource($event);
@@ -185,7 +180,7 @@ class eventController extends Controller
         $event = Event::findOrFail($id);
 
 
-        $video_name = $event->frames;
+        $video_name = $event->videos;
 
         $file_path = 'videos/'.$video_name;
 
@@ -196,5 +191,15 @@ class eventController extends Controller
         if($event->delete())
              return new EventResource($event);
          
+    }
+
+
+
+    public function auth(Request $request)
+    {
+        if($request->mail == "admin@eagle-eye.com" && $request->pass == "admin123")
+            return "authenticated";
+        else
+            return "not authenticated";
     }
 }

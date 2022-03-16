@@ -36,7 +36,7 @@ Route::put('update/{id}', 'eventController@update');
 // Delete event
 Route::delete('delete/{id}', 'eventController@destroy');
 
-
+Route::post('/auth', 'eventController@auth' );
 
 
 Route::get('/noti', function () {
