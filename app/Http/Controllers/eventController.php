@@ -28,7 +28,65 @@ class eventController extends Controller
         //$event = $request->isMethod('put') ? Event::findOrFail($request->id) : new Event;
 
         $event = new Event;
-        $event->videos = $request->video;
+
+         // Handle event video Upload
+        if($request->hasFile('video'))
+        {
+
+            $video = $request->file('video');
+
+            // Get filename with the extension
+            $filenameWithExt = $video->getClientOriginalName();
+
+            // Get just filename
+            $filename = pathinfo($filenameWithExt , PATHINFO_FILENAME);
+
+            // Get just ext
+            $extension = $video->getClientOriginalExtension();
+
+            // File name to store
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+
+            // Upload Video
+            $path = $video->storeAs('public/videos', $fileNameToStore);
+
+
+            $video_name = $fileNameToStore;
+
+
+            // foreach($images as $image)
+            // {
+
+            //     // Get filename with the extension
+            //     $filenameWithExt = $image->getClientOriginalName();
+
+            //     // Get just filename
+            //     $filename = pathinfo($filenameWithExt , PATHINFO_FILENAME);
+
+            //     // Get just ext
+            //     $extension = $image->getClientOriginalExtension();
+
+            //     // File name to store
+            //     $fileNameToStore = $filename.'_'.time().'.'.$extension;
+
+            //     // Upload Image
+            //     $path = $image->storeAs('public/frames', $fileNameToStore);
+            //     $frames[] = $fileNameToStore;
+            // }
+            // $counter = count($frames);
+        }
+
+        else 
+        {
+                $video_name = 'novideo.wav';
+        }
+
+
+        // if($request->hasFile('frames')){
+        // $event->frames = implode("|", $frames);
+        // }
+
+        $event->videos = $video_name;
 
         $event->save();
 
