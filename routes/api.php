@@ -20,7 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 
-
 // List events
 Route::get('events', 'eventController@index');
 
@@ -36,7 +35,7 @@ Route::put('update/{id}', 'eventController@update');
 // Delete event
 Route::delete('delete/{id}', 'eventController@destroy');
 
-Route::post('/auth', 'eventController@auth' );
+Route::post('/auth', 'authController@auth' );
 
 
 Route::get('/noti', function () {
