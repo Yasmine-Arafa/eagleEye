@@ -11,6 +11,6 @@
         </head>
     <body>
         <h1 class="text-center mt-5">Welcome to Eagle Eye</h1>
-        <img class="d-block mx-auto" width="500" height="500" src="/storage/eagle-eye.png" alt="Eagle-Eye" >
+        <img class="d-block mx-auto" width="500" height="500" src="https://eagle-eye22.herokuapp.com/storage/eagle-eye.png" alt="Eagle-Eye" >
     </body>
 </html>
