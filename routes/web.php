@@ -17,22 +17,27 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Route::get('data','frameController@index');
 
-//Route::resource('events', 'eventController');
+
+//Route::get('face/{id}', 'faceController@show');
+
+
+//Route::resource('events', 'frameController');
 
 // //list events
-// Route::get('events','eventController@index');
+// Route::get('events','frameController@index');
 
 // //list single event
-// Route::get('event/{id}','eventController@show');
+// Route::get('event/{id}','frameController@show');
 
 // //store new event
-// Route::post('add','eventController@store');
+// Route::post('add','frameController@store');
 
 // //update event
-// Route::put('update/{id}','eventController@update');
+// Route::put('update/{id}','frameController@update');
 
 // //delete event
-// Route::delete('delete/{id}','eventController@destroy');
+// Route::delete('delete/{id}','frameController@destroy');
 
 
