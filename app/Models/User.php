@@ -5,14 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Frame extends Model
+class User extends Model
 {
-    protected $table = 'frames';
+    protected $table = 'users';
     public $primarykey = 'id';
-    public $timestamps = false ;
+    public $timestamps = true ;
     use HasFactory;
-
-    public function getFaces(){
-        return $this->hasMany('App\Models\Face');
-    }
 }

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
 use App\Http\Requests;
 use App\Models\Frame;
 //use App\Models\Face;
@@ -15,7 +14,7 @@ use App\Http\Resources\FrameResource as FrameResource;
 class frameController extends Controller
 {
 
-    
+
     public function index()
     {
         //return Frame::find(68)->getFaces;
@@ -59,7 +58,7 @@ class frameController extends Controller
 
         }
 
-        else 
+        else
         {
                 $image_name = 'noFrame.jpg';
         }
@@ -118,10 +117,10 @@ class frameController extends Controller
             $path = $image->storeAs('public/events/frames', $fileNameToStore);
 
             $image_name = $fileNameToStore;
-        
+
          }
 
-        else 
+        else
         {
                 $image_name = 'noFrame.jpg';
         }
@@ -143,6 +142,8 @@ class frameController extends Controller
 
     public function destroy($id)
     {
+        /** must read by join queries */
+
         $frame = Frame::findOrFail($id);
         $frame->getFaces;
 
@@ -171,7 +172,7 @@ class frameController extends Controller
         //delete entire frame record from DB
         if($frame->delete())
              return new FrameResource($frame);
-         
+
     }
 
 }

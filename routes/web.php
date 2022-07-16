@@ -2,42 +2,26 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'authController@index');
+Route::get('/login', 'authController@index');
 
-//Route::get('data','frameController@index');
+Route::post('/', [
+    'uses' => 'authController@adminauth'
+  ]);
 
+Route::post('/login', [
+    'uses' => 'authController@adminauth'
+  ]);
 
-//Route::get('face/{id}', 'faceController@show');
+Route::get('/logout', 'authController@logout');
 
+Route::get('/addguard', 'userAuthController@create');
 
-//Route::resource('events', 'frameController');
+Route::post('/addguard', [
+    'uses' => 'userAuthController@add'
+  ]);
 
-// //list events
-// Route::get('events','frameController@index');
+Route::resource('frames','adminFrameController');
 
-// //list single event
-// Route::get('event/{id}','frameController@show');
-
-// //store new event
-// Route::post('add','frameController@store');
-
-// //update event
-// Route::put('update/{id}','frameController@update');
-
-// //delete event
-// Route::delete('delete/{id}','frameController@destroy');
-
-
+Route::resource('faces','adminFaceController');

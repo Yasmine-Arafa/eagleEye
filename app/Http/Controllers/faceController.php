@@ -7,12 +7,13 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Http\Requests;
 use App\Models\Face;
+use App\Models\Frame;
 use App\Http\Resources\FaceResource as FaceResource;
 
 
 class faceController extends Controller
 {
-    
+
     public function index()
     {
         $faces = Face::paginate(15);
@@ -21,10 +22,10 @@ class faceController extends Controller
        return FaceResource::collection($faces);
     }
 
-    
-
     public function store(Request $request, $frame_id)
     {
+        Frame::findOrFail($frame_id);
+
         $face = new Face;
 
         if($request->hasFile('image')){
@@ -61,7 +62,7 @@ class faceController extends Controller
         return new FaceResource($face);
     }
 
-    
+
     public function show($id)
     {
         $face = Face::findOrFail($id);
@@ -84,6 +85,6 @@ class faceController extends Controller
         //delete entire face record from DB
         if($face->delete())
              return new FaceResource($face);
-         
+
     }
 }
